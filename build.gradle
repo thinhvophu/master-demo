@@ -1,20 +1,27 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
-    }
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'com.palantir.docker' version '0.22.1'
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+project.version = '0.1.0'
+
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree("${project.buildDir}/libs/${project.name}-${project.version}.jar"))
+    into("build/dependency")
+}
+
+docker {
+    name "thinhvophu/master-demo"
+    copySpec.from(tasks.unpack.outputs).into("dependency")
+    buildArgs(['DEPENDENCY': "dependency"])
+}
 
 bootJar {
-    baseName = 'master-demo'
-    version = '0.1.0'
+    archiveBaseName = project.name
+    version = project.version
 }
 
 repositories {
