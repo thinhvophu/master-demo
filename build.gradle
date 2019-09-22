@@ -14,7 +14,7 @@ apply plugin: 'io.spring.dependency-management'
 
 bootJar {
     baseName = 'master-demo'
-    version =  '0.1.0'
+    version = '0.1.0'
 }
 
 repositories {
@@ -26,6 +26,5 @@ targetCompatibility = 1.12
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

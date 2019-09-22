@@ -4,8 +4,9 @@ import com.thinhvp.masterdemo.dto.RestResponse;
 import com.thinhvp.masterdemo.dto.SimpleMessage;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/message")
-public class WelcomeController {
+@RestController
+@RequestMapping(value = "/api")
+public class MessageController {
 
 	@GetMapping(value = "{message}")
 	public RestResponse<SimpleMessage> showSimpleMessage(@PathVariable String message) {
