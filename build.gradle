@@ -1,11 +1,18 @@
 plugins {
     id 'java'
+    id 'com.github.node-gradle.node' version '2.2.0'
     id 'org.springframework.boot' version '2.1.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'com.palantir.docker' version '0.22.1'
 }
 
+repositories {
+    mavenCentral()
+}
+
 project.version = '0.1.0'
+sourceCompatibility = 1.12
+targetCompatibility = 1.12
 
 task unpack(type: Copy) {
     dependsOn bootJar
@@ -23,13 +30,6 @@ bootJar {
     archiveBaseName = project.name
     version = project.version
 }
-
-repositories {
-    mavenCentral()
-}
-
-sourceCompatibility = 1.12
-targetCompatibility = 1.12
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
