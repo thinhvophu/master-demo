@@ -22,6 +22,7 @@ public class SpringWebMvcConfiguration implements WebMvcConfigurer {
 		registry.addResourceHandler("/*.html").addResourceLocations("classpath:static/");
 		registry.addResourceHandler("/*.js").addResourceLocations("classpath:static/");
 		registry.addResourceHandler("/*.css").addResourceLocations("classpath:static/");
+		registry.addResourceHandler("/*.ico").addResourceLocations("classpath:static/");
 	}
 
 	@Override
