@@ -12,16 +12,17 @@ public class BeansConfiguration {
 	@Bean
 	ThreadPoolTaskExecutor taskExecutor() {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-		executor.setCorePoolSize(5);
+		executor.setCorePoolSize(25);
 		executor.setMaxPoolSize(25);
-		executor.setQueueCapacity(100);
+		executor.setQueueCapacity(10000);
 		executor.setThreadNamePrefix("progress_tracking_pool");
 		executor.initialize();
 		return executor;
 	}
 
 	@Bean
-	AsyncTaskManager asyncTaskManager(@Autowired ThreadPoolTaskExecutor taskExecutor) {
+	AsyncTaskManager asyncTaskManager() {
+		ThreadPoolTaskExecutor taskExecutor = taskExecutor();
 		AsyncTaskManager asyncTaskManager = new AsyncTaskManager();
 		asyncTaskManager.setTaskExecutor(taskExecutor);
 		return asyncTaskManager;

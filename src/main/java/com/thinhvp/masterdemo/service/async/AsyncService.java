@@ -1,10 +1,15 @@
 package com.thinhvp.masterdemo.service.async;
 
-import com.thinhvp.masterdemo.dto.async.TrackableTask;
+import com.thinhvp.masterdemo.dto.async.Task;
+import com.thinhvp.masterdemo.persistence.entity.User;
+
+import java.util.List;
 
 public interface AsyncService {
 
-	void execute(TrackableTask runnable);
+	void persist(List<User> users, int taskId, int batchSize);
+
+	void execute(List<Task> tasks);
 
 	boolean cancel(int taskId);
 
@@ -12,5 +17,5 @@ public interface AsyncService {
 
 	void resume(int taskId);
 
-	int getProgress(int taskId);
+	String getProgress(int taskId);
 }
